@@ -1,0 +1,16 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<h1 class="food-heading">{{ product.type }}</h1>
+<section class="food-item">
+  <section class="col1">
+    <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="{{ product.name }}" />
+  </section>
+  <section class="col2">
+    <h2>{{ product.name }}</h2>
+    <h3>RM{{ product.price }}</h3>
+    <input type="number" value="1" />
+    <button class="order-button">Order</button>
+    <h4>Product Details</h4>
+    <p>{{ product.description }}</p>
+  </section>
+</section>
+{% endblock %}
