@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Homely</title>
+    <!-- Sets character encoding for the website -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add favicon to the html website -->
+    <link rel="icon" href="images/homelyicon.jpg" type="image/x-icon" />
+    <!-- Preconnects to Google Fonts for improved page fonts loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Links Roboto font from Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Links html to external CSS for styling -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css'%}" />
+  </head>
+  <body>
+    <!-- Header navigation bar of the website -->
+    <header>
+      <!-- logo linking to index.html/homepage -->
+      <section class="logo">
+        <a href="index.html">
+          <img src="./images/logo.jpg" alt="Logo of Homely" />
+        </a>
+      </section>
+      <!-- Navigation Menu -->
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="food.html">Food</a>
+        <a href="drinks.html">Drinks</a>
+        <a href="menu.html">Menu</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+          <img src="./images/Black_cart.png" alt="Cart">
+        </a>
+      </nav>
+    </header>
+    <hgroup>
+      <!-- Headline and tagline of the website -->
+      <h1>Welcome to Homely!</h1>
+      <p>Experience the best food and drinks in town.</p>
+      <!-- Button to the menu -->
+      <button>
+        <a href="menu.html">Let me see the menu</a>
+      </button>
+    </hgroup>
+    <section class="info-container">
+      <h3>Our Services</h3>
+      <!-- unlisted list of services -->
+      <ul class="list-wrapper">
+        <li class="card">
+          <img
+            src="./images/wedding.jpg"
+            alt="Wedding Services"
+            width="160px"
+            height="160px"
+          />Wedding Services</li>
+        <li class="card">
+          <img
+            src="./images/buffet.jpg"
+            alt="Buffet Services"
+            width="160px"
+            height="160px"
+          />Buffet Services
+        </li>
+        <li class="card">
+          <img
+            src="./images/catering.jpg"
+            alt="Event Catering"
+            width="160px"
+            height="160px"
+          />Event Catering
+        </li>
+      </ul>
+    </section>
+    <!-- reservations section with button link to reserve -->
+    <section class="reserve">
+      <h2>Reserve your table at any time for any occasion</h2>
+      <button>
+        <a href="contact.html">Let's go</a>
+      </button>
+    </section>
+    <section class="info-container">
+      <h3>Featured Products</h3>
+      <p>All Time Customer Favorites</p>
+      <!-- unlisted list of featured products -->
+      <ul class="list-wrapper">
+        <li class="card">
+          <img
+            src="./images/carbonara.jpg"
+            alt="Spaghetti Carbonara"
+            width="160px"
+            height="160px"
+          />Spaghetti Carbonara
+        </li>
+        <li class="card">
+          <img
+            src="./images/chicken.jpg"
+            alt="Honey Garlic Chicken"
+            width="160px"
+            height="160px"
+          />Honey Garlic Chicken
+        </li>
+        <li class="card">
+          <img
+            src="./images/burger.jpg"
+            alt="Chicken Burger"
+            width="160px"
+            height="160px"
+          />Chicken Burger
+        </li>
+      </ul>
+    </section>
+    <section class="operations">
+      <!-- table to display operation hours -->
+      <h3>Operation Hours</h3>
+      <table class="hours">
+        <tbody>
+          <tr>
+            <th>Monday -</th>
+            <td>10pm - 7pm</td>
+          </tr>
+          <tr>
+            <th>Tuesday -</th>
+            <td>10am - 9pm</td>
+          </tr>
+          <tr>
+            <th>Wednesday -</th>
+            <td>10am - 9pm</td>
+          </tr>
+          <tr>
+            <th>Thursday -</th>
+            <td>10am - 9pm</td>
+          </tr>
+          <tr>
+            <th>Friday -</th>
+            <td>10am - 9pm</td>
+          </tr>
+          <tr>
+            <th>Saturday -</th>
+            <td>10am - 9pm</td>
+          </tr>
+          <tr>
+            <th>Sunday -</th>
+            <td>10am - 3pm</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--Catalogue of products in list-->
+    <section class="products">
+      <h3>We also sell</h3>
+      <ul class="product-container">
+        <li class="product">
+          <a href="sauce.html">
+            <img src="./images/bbqsauce.jpg" alt="product-image" />
+          </a>
+          <section class="product-desc">
+            <h4>Spicy BBQ Sauce</h4>
+            <section class="buy">
+              <h5>RM3</h5>
+              <a href="sauce.html" class="cart-link">
+                <img
+                  src="./images/shopping-cart.png"
+                  alt="shopping cart icon"
+                />
+              </a>
+            </section>
+          </section>
+        </li>
+        <li class="product">
+          <a href="sauce.html">
+            <img src="./images/chickenrub.jpg" alt="product-image"
+          /></a>
+          <section class="product-desc">
+            <h4>Special Chicken Rub</h4>
+            <section class="buy">
+              <h5>RM3</h5>
+              <a href="sauce.html" class="cart-link">
+                <img
+                  src="./images/shopping-cart.png"
+                  alt="shopping cart icon"
+                />
+              </a>
+            </section>
+          </section>
+        </li>
+        <li class="product">
+          <a href="sauce.html">
+            <img src="./images/truffle.jpg" alt="product-image" />
+          </a>
+          <section class="product-desc">
+            <h4>Gourmet Truffle Butter</h4>
+            <section class="buy">
+              <h5>RM6</h5>
+              <a href="sauce.html" class="cart-link">
+                <img
+                  src="./images/shopping-cart.png"
+                  alt="shopping cart icon"
+                />
+              </a>
+            </section>
+          </section>
+        </li>
+      </ul>
+      <div class="view-catalogue-container">
+        <a class="view-catalogue" href="catalogue.html">View Catalogue</a>
+      </div>
+    </section>
+    <!-- Footer with social media linkages and contact info -->
+    <footer>
+      <section class="socials">
+        <h2>Follow us on social media</h2>
+        <a href="https://www.facebook.com/login.php"
+          ><img
+            src="./images/facebook.png"
+            alt="Facebook Icon"
+            width="48px"
+            height="48px"
+        /></a>
+        <a href="https://twitter.com/"
+          ><img
+            src="./images/twitter.png"
+            alt="Twitter Icon"
+            width="48px"
+            height="48px"
+        /></a>
+        <a href="https://www.instagram.com/"
+          ><img
+            src="./images/instagram.png"
+            alt="Instagram Icon"
+            width="48px"
+            height="48px"
+        /></a>
+      </section>
+      <p>© 2023 Homely. All rights reserved.</p>
+      <address>
+        123 Tasty Avenue ,Foodie City, FD 12345
+        <a href="tel:+1234567890">+60 12-345 6789</a><br />
+        <a href="mailto:info@Homely.com">info@homely.com</a>
+      </address>
+    </footer>
+  </body>
+</html>
