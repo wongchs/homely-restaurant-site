@@ -4,210 +4,22 @@
 <section class="catalogue-container">
   <section class="products">
     <ul class="product-container">
+      {% for product in products %}
       <li class="product">
-        <a href="sauce.html">
-          <img src="./images/bbqsauce.jpg" alt="product-image" />
+        <a href="{% url 'product_detail' product.id %}">
+          <img src="{{ product.image.url }}" alt="product-image" />
           <section class="product-desc">
-            <h4>Spicy BBQ Sauce</h4>
+            <h4>{{ product.name }}</h4>
             <section class="buy">
-              <h5>RM3</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
+              <h5>RM{{ product.price }}</h5>
+              <a href="{% url 'product_detail' product.id %}" class="cart-link">
+                <img src="{% static 'images/icons/shopping-cart.png' %}" alt="shopping cart icon" />
               </a>
             </section>
           </section>
         </a>
       </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/chickenrub.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Special Chicken Rub</h4>
-            <section class="buy">
-              <h5>RM3</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/bbqRub.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>BBQ Rub</h4>
-            <section class="buy">
-              <h5>RM3</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/allpurposeseasoning.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>All Purpose Seasoning Mix</h4>
-            <section class="buy">
-              <h5>RM4</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/cheesesauce.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Cheddar Cheese Sauce</h4>
-            <section class="buy">
-              <h5>RM5</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/teriyakisauce.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Teriyaki Sauce</h4>
-            <section class="buy">
-              <h5>RM4</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/tomyamPaste.webp" alt="product-image" />
-          <section class="product-desc">
-            <h4>Tomyam Paste</h4>
-            <section class="buy">
-              <h5>RM3</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/chinesemexican.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Fusion Mexican-Chinese Sauce</h4>
-            <section class="buy">
-              <h5>RM4</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/chillioil.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Homemade Chilli Oil</h4>
-            <section class="buy">
-              <h5>RM2</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/truffle.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Gourmet Truffle Butter</h4>
-            <section class="buy">
-              <h5>RM6</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/pineapple.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Tangy Pineapple Glaze</h4>
-            <section class="buy">
-              <h5>RM4</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
-      <li class="product">
-        <a href="sauce.html">
-          <img src="./images/lemonherb.jpg" alt="product-image" />
-          <section class="product-desc">
-            <h4>Zesty Lemon Herb Marinade</h4>
-            <section class="buy">
-              <h5>RM3</h5>
-              <a href="sauce.html" class="cart-link">
-                <img
-                  src="./images/shopping-cart.png"
-                  alt="shopping cart icon"
-                />
-              </a>
-            </section>
-          </section>
-        </a>
-      </li>
+      {% endfor %}
     </ul>
   </section>
 </section>
