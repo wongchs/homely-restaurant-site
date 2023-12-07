@@ -55,7 +55,7 @@ hgroup {
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
-  background-image: url(images/background.jpg);
+  background-image: url("/static/images/background.jpg");
   background-size: cover;
   color: white;
 }

@@ -1,4 +1,4 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} {% load static %} {% block content %}
 <hgroup>
   <!-- Headline and tagline of the website -->
   <h1>Welcome to Homely!</h1>
@@ -125,7 +125,7 @@
         <section class="buy">
           <h5>RM3</h5>
           <a href="sauce.html" class="cart-link">
-            <img src="./images/shopping-cart.png" alt="shopping cart icon" />
+            <img src="{% static 'images/shopping-cart.png' %}" alt="shopping cart icon" />
           </a>
         </section>
       </section>
@@ -139,7 +139,7 @@
         <section class="buy">
           <h5>RM3</h5>
           <a href="sauce.html" class="cart-link">
-            <img src="./images/shopping-cart.png" alt="shopping cart icon" />
+            <img src="{% static 'images/shopping-cart.png' %}" alt="shopping cart icon" />
           </a>
         </section>
       </section>
@@ -153,7 +153,10 @@
         <section class="buy">
           <h5>RM6</h5>
           <a href="sauce.html" class="cart-link">
-            <img src="./images/shopping-cart.png" alt="shopping cart icon" />
+            <img
+              src="{% static 'images/shopping-cart.png' %}"
+              alt="shopping cart icon"
+            />
           </a>
         </section>
       </section>
