@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import FoodItem
+from itertools import groupby
+from operator import attrgetter
 
 
 # Create your views here.
@@ -24,7 +27,9 @@ def drinks(request):
 
 
 def food(request):
-    return render(request, 'food.html')
+    food_items = FoodItem.objects.all().order_by('type')
+    food_items_grouped = {k: list(v) for k, v in groupby(food_items, key=attrgetter('type'))}
+    return render(request, 'food.html', {'food_items_grouped': food_items_grouped.items()})
 
 
 def contact(request):
