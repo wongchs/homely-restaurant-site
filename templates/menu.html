@@ -5,7 +5,7 @@
 <section class="menu-container">
   <section class="category-container">
     <!-- Text links to "Food" category -->
-    <a href="food.html" class="category-label">Food</a>
+    <a href="{% url 'food' %}" class="category-label">Food</a>
   </section>
   <!-- A list of food items with names and prices-->
   <section class="food-container">
@@ -61,7 +61,7 @@
 
   <section class="category-container">
     <!-- Text linking to Drinks section -->
-    <a href="drinks.html" class="category-label">Drinks</a>
+    <a href="{% url 'drinks' %}" class="category-label">Drinks</a>
   </section>
   <!-- A list of drinks items with names and prices-->
   <section class="drinks-container">
@@ -125,7 +125,7 @@
 
   <section class="category-container">
     <!-- Text linking to dessert section in Drinks section -->
-    <a href="drinks.html#dessert-nav" class="category-label">Dessert</a>
+    <a href="{% url 'drinks' %}#dessert-nav" class="category-label">Dessert</a>
   </section>
   <!-- A list of dessert items with names and prices-->
   <section class="dessert-container">
