@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Homely</title>
+    <!-- Sets character encoding for the website -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add favicon to the html website -->
+    <link rel="icon" href="images/homelyicon.jpg" type="image/x-icon" />
+    <!-- Preconnects to Google Fonts for improved page fonts loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Links Roboto font from Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Links html to external CSS for styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'styles/main.css'%}"
+    />
+  </head>
+  <body>
+    {% include 'header.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'footer.html' %}
+  </body>
+</html>
