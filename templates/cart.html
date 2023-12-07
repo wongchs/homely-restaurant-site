@@ -1,4 +1,6 @@
 {% extends 'main.html' %} {% load static %} {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{% static 'javascript/cart.js' %}"></script>
 <section class="cart">
   <table width="100%">
     <thead>
@@ -10,28 +12,8 @@
         <td>Subtotal</td>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td><img src="./images/chickenburg.jpg" alt="product-image" /></td>
-        <td>Chicken Burger</td>
-        <td>RM10.50</td>
-        <td><input type="number" value="1" /></td>
-        <td>RM10.50</td>
-      </tr>
-      <tr>
-        <td><img src="./images/bbqsauce.jpg" alt="product-image" /></td>
-        <td>Spicy BBQ Sauce</td>
-        <td>RM3.00</td>
-        <td><input type="number" value="1" /></td>
-        <td>RM3.00</td>
-      </tr>
-      <tr>
-        <td><img src="./images/icecream.jpg" alt="product-image" /></td>
-        <td>Ice Cream Cup</td>
-        <td>RM4.50</td>
-        <td><input type="number" value="1" /></td>
-        <td>RM4.50</td>
-      </tr>
+    <tbody id="cart-items">
+      <!-- Cart items will be dynamically added here using JavaScript -->
     </tbody>
   </table>
 </section>
@@ -39,7 +21,7 @@
   <table>
     <tr>
       <td>Cart Subtotal</td>
-      <td>RM18.00</td>
+      <td id="cart-subtotal">RM0.00</td>
     </tr>
     <tr>
       <td>Shipping</td>
@@ -47,7 +29,7 @@
     </tr>
     <tr>
       <td>Total</td>
-      <td>RM48.00</td>
+      <td id="cart-total">RM0.00</td>
     </tr>
   </table>
   <br />
