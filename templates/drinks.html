@@ -16,7 +16,7 @@
         <section class="item-description">
           <p>{{ item.description }}</p>
         </section>
-        <a href="{{ item.details_url }}" class="more-details-link">
+        <a href="{% url 'item_detail' pk=item.id %}" class="more-details-link">
           <button class="more-details">more details</button>
         </a>
       </section>

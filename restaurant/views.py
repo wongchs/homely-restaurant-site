@@ -42,3 +42,8 @@ def contact(request):
 
 def cart(request):
     return render(request, 'cart.html')
+
+
+def item_detail(request, pk):
+    item = FoodItem.objects.get(id = pk)
+    return render(request, 'item_detail.html', {'item': item})
