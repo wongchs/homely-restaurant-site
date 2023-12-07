@@ -1,0 +1,61 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<h1 class="food-heading">About Us</h1>
+<br />
+
+<section class="about-us">
+  <h1>Welcome to Homely!</h1>
+  <!-- Articles introducing the Homely webpage -->
+  <article>
+    Opened since 1999, we Homely, are passionate about serving delicious food
+    and drinks in a cozy and welcoming atmosphere. With our top quality chefs in
+    the kitchen, we commit to provide the highest quality food and the finest
+    dining experience.
+  </article>
+  <!-- Embeded YouTube rich video element -->
+  <iframe
+    style="display: block; margin-left: auto; margin-right: auto"
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/lTiidDEhQnw?si=IbiV05TyJ6S8gIA2"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+  <article>
+    Our menu features a wide variety of mouthwatering dishes and refreshing
+    beverages. Whether you're here for a romantic dinner, a family gathering, or
+    a casual meal with friends, we have something for everyone.
+  </article>
+  <!-- Section to display customer's review in a grey bar -->
+  <section class="customer-reviews">
+    <h2>Customer's Reviews</h2>
+  </section>
+  <section class="customer-reviews">
+    <section class="customer-review">
+      <p>
+        Homely is my go-to place for delicious food. I love their friendly staff
+        and cozy atmosphere.
+      </p>
+      <br />
+      <p class="customer-name">John Doe</p>
+    </section>
+    <section class="customer-review">
+      <p>
+        I had an amazing dining experience at Homely. Their menu is fantastic,
+        and the service is exceptional.
+      </p>
+      <br />
+      <p class="customer-name">Jane Smith</p>
+    </section>
+    <section class="customer-review">
+      <p>
+        I had my first date with my girlfriend here, the environment and service
+        is simply just perfect!
+      </p>
+      <br />
+      <p class="customer-name">Jonathan Liew</p>
+    </section>
+  </section>
+</section>
+{% endblock %}

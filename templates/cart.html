@@ -1,0 +1,58 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<section class="cart">
+  <table width="100%">
+    <thead>
+      <tr>
+        <td>Image</td>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Subtotal</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="./images/chickenburg.jpg" alt="product-image" /></td>
+        <td>Chicken Burger</td>
+        <td>RM10.50</td>
+        <td><input type="number" value="1" /></td>
+        <td>RM10.50</td>
+      </tr>
+      <tr>
+        <td><img src="./images/bbqsauce.jpg" alt="product-image" /></td>
+        <td>Spicy BBQ Sauce</td>
+        <td>RM3.00</td>
+        <td><input type="number" value="1" /></td>
+        <td>RM3.00</td>
+      </tr>
+      <tr>
+        <td><img src="./images/icecream.jpg" alt="product-image" /></td>
+        <td>Ice Cream Cup</td>
+        <td>RM4.50</td>
+        <td><input type="number" value="1" /></td>
+        <td>RM4.50</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="subtotal">
+  <table>
+    <tr>
+      <td>Cart Subtotal</td>
+      <td>RM18.00</td>
+    </tr>
+    <tr>
+      <td>Shipping</td>
+      <td>Free</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>RM48.00</td>
+    </tr>
+  </table>
+  <br />
+  <a href="payment.html" class="payment">
+    <button class="payment">Proceed To Checkout</button>
+  </a>
+</section>
+{% endblock %}

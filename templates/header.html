@@ -2,19 +2,19 @@
 <header>
   <!-- logo linking to index.html/homepage -->
   <section class="logo">
-    <a href="index.html">
+    <a href="{% url 'home' %}">
       <img src="{% static 'images/logo.jpg' %}" alt="Logo of Homely" />
     </a>
   </section>
   <!-- Navigation Menu -->
   <nav>
-    <a href="food.html">Food</a>
-    <a href="drinks.html">Drinks</a>
-    <a href="menu.html">Menu</a>
-    <a href="catalogue.html">Catalogue</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html" class="cart-link">
+    <a href="{% url 'food' %}">Food</a>
+    <a href="{% url 'drinks' %}">Drinks</a>
+    <a href="{% url 'menu' %}">Menu</a>
+    <a href="{% url 'catalog' %}">Catalogue</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'cart' %}" class="cart-link">
       <img src="{% static 'images/Black_cart.png' %}" alt="Cart" />
     </a>
   </nav>

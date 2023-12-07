@@ -1,0 +1,59 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<section class="contact">
+  <h1>Contact Us</h1>
+  <address>
+    <h3>123 Tasty Avenue, Foodie City, FD 12345</h3>
+    <!-- Linked phone and email information -->
+    <p>Phone: <a href="tel:+1234567890">+60 12-345 6789</a></p>
+    <p>Email: <a href="mailto:info@Homely.com">info@homely.com</a></p>
+  </address>
+</section>
+<!-- Reservation form -->
+<section class="reservation-wrapper">
+  <section class="reservation-text">
+    <h2>Need a reservation?</h2>
+    <p>Fill in the reservation details here!</p>
+  </section>
+  <form class="reservation-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your name" required />
+
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="abc@mail.com"
+      required
+    />
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required />
+
+    <!-- Drop down menu for reservation time -->
+    <label for="time">Time:</label>
+    <select id="time" name="time" required>
+      <option value="">Select a time</option>
+      <option value="09:00" disabled>10:00 AM</option>
+      <option value="09:00" disabled>11:00 AM</option>
+      <option value="12:00" disabled>12:00 PM</option>
+      <option value="15:00" disabled>01:00 PM</option>
+      <option value="15:00" disabled>02:00 PM</option>
+      <option value="15:00" disabled>03:00 PM</option>
+      <option value="15:00" disabled>04:00 PM</option>
+      <option value="15:00" disabled>05:00 PM</option>
+      <option value="18:00" disabled>06:00 PM</option>
+      <option value="18:00" disabled>07:00 PM</option>
+      <option value="18:00">08:00 PM</option>
+      <option value="21:00" disabled>09:00 PM</option>
+    </select>
+
+    <label for="guests">Number of Guests:</label>
+    <input type="number" id="guests" name="guests" placeholder="2" required />
+    <!-- Submit button -->
+    <button type="submit">
+      <a href="reservation.html">Submit</a>
+    </button>
+  </form>
+</section>
+{% endblock %}
