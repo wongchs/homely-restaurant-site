@@ -11,7 +11,9 @@ def home(request):
 
 
 def menu(request):
-    return render(request, 'menu.html')
+    food_items = FoodItem.objects.all().order_by('category')
+    food_items_grouped = {k: list(v) for k, v in groupby(food_items, key=attrgetter('category'))}
+    return render(request, 'menu.html', {'food_items_grouped': food_items_grouped.items()})
 
 
 def catalog(request):
@@ -23,11 +25,13 @@ def about(request):
 
 
 def drinks(request):
-    return render(request, 'drinks.html')
+    drink_items = FoodItem.objects.filter(category='Drinks').order_by('type')
+    drink_items_grouped = {k: list(v) for k, v in groupby(drink_items, key=attrgetter('type'))}
+    return render(request, 'drinks.html', {'drink_items_grouped': drink_items_grouped.items()})
 
 
 def food(request):
-    food_items = FoodItem.objects.all().order_by('type')
+    food_items = FoodItem.objects.all().filter(category='Food').order_by('type')
     food_items_grouped = {k: list(v) for k, v in groupby(food_items, key=attrgetter('type'))}
     return render(request, 'food.html', {'food_items_grouped': food_items_grouped.items()})
 

@@ -5,7 +5,7 @@
   <p>Experience the best food and drinks in town.</p>
   <!-- Button to the menu -->
   <button>
-    <a href="menu.html">Let me see the menu</a>
+    <a href="{% url 'menu' %}">Let me see the menu</a>
   </button>
 </hgroup>
 <section class="info-container">
@@ -14,7 +14,7 @@
   <ul class="list-wrapper">
     <li class="card">
       <img
-        src="./images/wedding.jpg"
+        src="{% static 'images/wedding.jpg' %}"
         alt="Wedding Services"
         width="160px"
         height="160px"
@@ -22,7 +22,7 @@
     </li>
     <li class="card">
       <img
-        src="./images/buffet.jpg"
+        src="{% static 'images/buffet.jpg' %}"
         alt="Buffet Services"
         width="160px"
         height="160px"
@@ -30,7 +30,7 @@
     </li>
     <li class="card">
       <img
-        src="./images/catering.jpg"
+        src="{% static 'images/catering.jpg' %}"
         alt="Event Catering"
         width="160px"
         height="160px"
@@ -42,7 +42,7 @@
 <section class="reserve">
   <h2>Reserve your table at any time for any occasion</h2>
   <button>
-    <a href="contact.html">Let's go</a>
+    <a href="{% url 'contact' %}">Let's go</a>
   </button>
 </section>
 <section class="info-container">
