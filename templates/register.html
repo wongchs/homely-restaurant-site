@@ -1,0 +1,14 @@
+{% extends 'main.html' %} {% load static %} {% csrf_token %} {% block content %}
+<section class="registration-section">
+  <h2>Register</h2>
+  <form action="{% url 'register' %}" method="post">
+    <label for="new_username">Username:</label>
+    <input type="text" id="new_username" name="new_username" required>
+    
+    <label for="new_password">Password:</label>
+    <input type="password" id="new_password" name="new_password" required>
+
+    <button type="submit">Register</button>
+  </form>
+</section>
+{% endblock %}
