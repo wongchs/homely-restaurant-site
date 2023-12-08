@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import FoodItem
+from .models import FoodItem, Cart, CartItem
 from itertools import groupby
 from operator import attrgetter
 from django.shortcuts import render, get_object_or_404
 from .models import Product
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -54,3 +56,28 @@ def item_detail(request, pk):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'product_detail.html', {'product': product})
+
+def add_to_cart(request, item_id, quantity):
+    # Get or create the cart
+    cart = Cart.objects.get_or_create(user=request.user)[0]
+
+    # Get the FoodItem
+    item = FoodItem.objects.get(id=item_id)
+
+    # Check if the item is already in the cart
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, item=item)
+
+    # Update quantity and price if the item already exists in the cart
+    if not created:
+        cart_item.quantity += int(quantity)
+        cart_item.price = item.price  # Update the price
+        cart_item.save()
+    else:
+        cart_item.price = item.price  # Set the initial price for a new cart item
+        cart_item.save()
+
+    # Calculate the total price for the cart
+    cart_total = cart.cartitem_set.aggregate(total=models.Sum(models.F('quantity') * models.F('price')))['total'] or 0
+
+    # Serialize cart data to send back to the client
+    return JsonResponse({'cart_total': cart_total})
