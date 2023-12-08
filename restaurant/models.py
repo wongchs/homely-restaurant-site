@@ -24,21 +24,19 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.type} - {self.name}'
     
-class CartItem(models.Model):
-    cart = models.ForeignKey('Cart', on_delete=models.CASCADE)
-    item = models.ForeignKey(FoodItem, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    price = models.DecimalField(max_digits=6, decimal_places=2)  # Add a price field
-
-    def __str__(self):
-        return f'{self.quantity} x {self.item.name}'
-
-    def subtotal(self):
-        return self.quantity * self.price
     
-class Cart(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
+class CartItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    item = models.ForeignKey('FoodItem', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    
     def __str__(self):
-        return f"Cart {self.id}"
+        return f'{self.quantity} of {self.item.name}'
+    
+
+class Cart(models.Model):
+    items = models.ManyToManyField(CartItem)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    
+    def __str__(self):
+        return f'Cart with {self.items.count()} items'
