@@ -2,6 +2,10 @@ from .models import FoodItem, Product, CartItem, Cart
 from itertools import groupby
 from operator import attrgetter
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -93,3 +97,27 @@ def remove_from_cart(request, pk):
     cart.items.remove(cart_item)
     cart_item.delete() 
     return redirect('cart')
+
+@login_required
+
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid login credentials'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+def custom_register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid registration data'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
