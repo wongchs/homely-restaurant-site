@@ -11,27 +11,17 @@
       </tr>
     </thead>
     <tbody>
+      {% for cart_item in items_with_subtotal %}
       <tr>
-        <td><img src="./images/chickenburg.jpg" alt="product-image" /></td>
-        <td>Chicken Burger</td>
-        <td>RM10.50</td>
-        <td><input type="number" value="1" /></td>
-        <td>RM10.50</td>
+        <td>
+          <img src="{{ cart_item.item.image.url }}" alt="product-image" />
+        </td>
+        <td>{{ cart_item.item.name }}</td>
+        <td>RM{{ cart_item.item.price }}</td>
+        <td>{{ cart_item.quantity }}</td>
+        <td>RM{{ cart_item.subtotal }}</td>
       </tr>
-      <tr>
-        <td><img src="./images/bbqsauce.jpg" alt="product-image" /></td>
-        <td>Spicy BBQ Sauce</td>
-        <td>RM3.00</td>
-        <td><input type="number" value="1" /></td>
-        <td>RM3.00</td>
-      </tr>
-      <tr>
-        <td><img src="./images/icecream.jpg" alt="product-image" /></td>
-        <td>Ice Cream Cup</td>
-        <td>RM4.50</td>
-        <td><input type="number" value="1" /></td>
-        <td>RM4.50</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </section>
@@ -39,7 +29,7 @@
   <table>
     <tr>
       <td>Cart Subtotal</td>
-      <td>RM18.00</td>
+      <td>RM{{ total }}</td>
     </tr>
     <tr>
       <td>Shipping</td>
@@ -47,11 +37,11 @@
     </tr>
     <tr>
       <td>Total</td>
-      <td>RM48.00</td>
+      <td>RM{{ total }}</td>
     </tr>
   </table>
   <br />
-  <a href="payment.html" class="payment">
+  <a href="{% url 'checkout' %}" class="payment">
     <button class="payment">Proceed To Checkout</button>
   </a>
 </section>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class FoodItem(models.Model):
     type = models.CharField(max_length=100)
@@ -22,3 +23,21 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.type} - {self.name}'
+    
+    
+class CartItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    item = models.ForeignKey('FoodItem', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    
+    def __str__(self):
+        return f'{self.quantity} of {self.item.name}'
+    
+
+class Cart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    items = models.ManyToManyField(CartItem)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    
+    def __str__(self):
+        return f'Cart with {self.items.count()} items'
