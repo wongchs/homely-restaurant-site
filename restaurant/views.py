@@ -58,6 +58,7 @@ def cart(request):
     for item_info in cart['items']:
         pk = item_info['pk']
         item_type = item_info['type']
+        quantity = item_info.get('quantity', 1)
         
         if item_type == 'food':
             item = FoodItem.objects.get(pk=pk)
@@ -67,7 +68,7 @@ def cart(request):
             content_type = ContentType.objects.get_for_model(Product)
         else:
             continue
-        cart_item = CartItem(content_type=content_type, object_id=item.pk, quantity=1)
+        cart_item = CartItem(content_type=content_type, object_id=item.pk, quantity=quantity)
         cart_item.subtotal = cart_item.quantity * item.price
         items_with_subtotal.append(cart_item)
     
@@ -94,8 +95,21 @@ def product_detail(request, pk):
 
 
 def add_to_cart(request, pk, item_type):
+    quantity = request.POST.get('quantity', 1) 
+    quantity = int(quantity)
+
     cart = request.session.get('cart', {'items': [], 'total': 0})
-    cart['items'].append({'pk': pk, 'type': item_type})
+    
+    found = False
+    for item in cart['items']:
+        if item['pk'] == pk and item['type'] == item_type:
+            item['quantity'] = item.get('quantity', 1) + quantity
+            found = True
+            break
+    
+    if not found:
+        cart['items'].append({'pk': pk, 'type': item_type, 'quantity': quantity})
+    
     request.session['cart'] = cart
     return redirect('cart')
 
@@ -115,8 +129,8 @@ def remove_from_cart(request, pk):
     cart_item.delete() 
     return redirect('cart')
 
-@login_required
 
+@login_required
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST['username']
