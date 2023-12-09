@@ -104,14 +104,14 @@
   <ul class="product-container">
     {% for product in products %}
     <li class="product">
-      <a href="{{ product.details_url }}">
+      <a href="{% url 'product_detail' product.id %}">
         <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="product-image" />
       </a>
       <section class="product-desc">
         <h4>{{ product.name }}</h4>
         <section class="buy">
           <h5>RM{{ product.price }}</h5>
-          <a href="{{ product.details_url }}" class="cart-link">
+          <a href="{% url 'product_detail' product.id %}" class="cart-link">
             <img
               src="{% static 'images/icons/shopping-cart.png' %}"
               alt="shopping cart icon"
@@ -122,6 +122,9 @@
     </li>
     {% endfor %}
   </ul>
+  <div class="view-catalogue-container">
+    <a class="view-catalogue" href="{% url 'catalog' %}">View Catalogue</a>
+  </div>
 </section>
 
 {% endblock %}
