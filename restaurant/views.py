@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.contrib.contenttypes.models import ContentType
 
 
 # Create your views here.
@@ -48,10 +49,20 @@ def cart(request):
     cart = request.session.get('cart', {'items': [], 'total': 0})
     
     items_with_subtotal = []
-    for pk in cart['items']:
-        food_item = FoodItem.objects.get(pk=pk)
-        cart_item = CartItem(item=food_item, quantity=1) 
-        cart_item.subtotal = cart_item.quantity * cart_item.item.price
+    for item_info in cart['items']:
+        pk = item_info['pk']
+        item_type = item_info['type']
+        
+        if item_type == 'food':
+            item = FoodItem.objects.get(pk=pk)
+            content_type = ContentType.objects.get_for_model(FoodItem)
+        elif item_type == 'product':
+            item = Product.objects.get(pk=pk)
+            content_type = ContentType.objects.get_for_model(Product)
+        else:
+            continue
+        cart_item = CartItem(content_type=content_type, object_id=item.pk, quantity=1)
+        cart_item.subtotal = cart_item.quantity * item.price
         items_with_subtotal.append(cart_item)
     
     cart['total'] = sum(item.subtotal for item in items_with_subtotal)
@@ -76,9 +87,9 @@ def product_detail(request, pk):
     return render(request, 'product_detail.html', {'product': product})
 
 
-def add_to_cart(request, pk):
+def add_to_cart(request, pk, item_type):
     cart = request.session.get('cart', {'items': [], 'total': 0})
-    cart['items'].append(pk)
+    cart['items'].append({'pk': pk, 'type': item_type})
     request.session['cart'] = cart
     return redirect('cart')
 
