@@ -11,7 +11,13 @@ from django.contrib.contenttypes.models import ContentType
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    food_items = FoodItem.objects.all()[:3]
+    products = Product.objects.all()[:3]
+    context = {
+        'food_items': food_items,
+        'products': products
+    }
+    return render(request, 'home.html', context)
 
 
 def menu(request):
