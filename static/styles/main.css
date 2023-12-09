@@ -547,7 +547,7 @@ select {
   margin-bottom: 12px;
 }
 
-.col2 > input {
+.col2 > form > input {
   padding: 10px 12px;
   width: 20px;
   border-radius: 5px;
