@@ -1,8 +1,9 @@
-{% extends 'main.html' %} {% load static %} {% csrf_token %} {% block content %}
-<script src="{% static 'path/to/auth.js' %}"></script>
+{% extends 'main.html' %} {% load static %} {% block content %}
+<!-- <script src="{% static 'jscript/auth.js' %}"></script> -->
 <section class="login-section">
   <h2>Login</h2>
   <form id="loginForm" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     

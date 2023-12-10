@@ -40,8 +40,9 @@ class CartItem(models.Model):
     
 
 class Cart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')
     items = models.ManyToManyField(CartItem)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    
+
     def __str__(self):
-        return f'Cart with {self.items.count()} items'
+        return f'Cart with {self.items.count()} items for {self.user.username}'

@@ -51,32 +51,20 @@ def contact(request):
     return render(request, 'contact.html')
 
 
+@login_required
 def cart(request):
-    cart = request.session.get('cart', {'items': [], 'total': 0})
-    
+    user_cart, created = Cart.objects.get_or_create(user=request.user)
     items_with_subtotal = []
-    for item_info in cart['items']:
-        pk = item_info['pk']
-        item_type = item_info['type']
-        quantity = item_info.get('quantity', 1)
-        
-        if item_type == 'food':
-            item = FoodItem.objects.get(pk=pk)
-            content_type = ContentType.objects.get_for_model(FoodItem)
-        elif item_type == 'product':
-            item = Product.objects.get(pk=pk)
-            content_type = ContentType.objects.get_for_model(Product)
-        else:
-            continue
-        cart_item = CartItem(content_type=content_type, object_id=item.pk, quantity=quantity)
-        cart_item.subtotal = cart_item.quantity * item.price
+    for cart_item in user_cart.items.all():
+        cart_item.subtotal = cart_item.quantity * cart_item.item.price
         items_with_subtotal.append(cart_item)
     
-    cart['total'] = sum(item.subtotal for item in items_with_subtotal)
+    user_cart.total = sum(item.subtotal for item in items_with_subtotal)
+    user_cart.save()
     
     context = {
         'items_with_subtotal': items_with_subtotal,
-        'total': cart['total'],
+        'total': user_cart.total,
     }
     return render(request, 'cart.html', context)
 
@@ -94,23 +82,29 @@ def product_detail(request, pk):
     return render(request, 'product_detail.html', {'product': product})
 
 
+@login_required
 def add_to_cart(request, pk, item_type):
-    quantity = request.POST.get('quantity', 1) 
+    quantity = request.POST.get('quantity', 1)
     quantity = int(quantity)
-
-    cart = request.session.get('cart', {'items': [], 'total': 0})
     
-    found = False
-    for item in cart['items']:
-        if item['pk'] == pk and item['type'] == item_type:
-            item['quantity'] = item.get('quantity', 1) + quantity
-            found = True
-            break
+    user_cart, created = Cart.objects.get_or_create(user=request.user)
     
-    if not found:
-        cart['items'].append({'pk': pk, 'type': item_type, 'quantity': quantity})
+    content_type = ContentType.objects.get(model=item_type)
+    item = get_object_or_404(content_type.model_class(), pk=pk)
     
-    request.session['cart'] = cart
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user,
+        content_type=content_type,
+        object_id=item.pk,
+        defaults={'quantity': quantity}
+    )
+    
+    if not created:
+        cart_item.quantity += quantity
+        cart_item.save()
+    
+    user_cart.items.add(cart_item)
+    user_cart.save()
     return redirect('cart')
 
 
