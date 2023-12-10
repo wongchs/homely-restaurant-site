@@ -3,6 +3,7 @@
   <table width="100%">
     <thead>
       <tr>
+        <td>Remove</td>
         <td>Image</td>
         <td>Product</td>
         <td>Price</td>
@@ -14,11 +15,25 @@
       {% for cart_item in items_with_subtotal %}
       <tr>
         <td>
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="remove-item-button">X</button>
+          </form>
+        </td>
+        <td>
           <img src="{{ cart_item.item.image.url }}" alt="product-image" />
         </td>
         <td>{{ cart_item.item.name }}</td>
         <td>RM{{ cart_item.item.price }}</td>
-        <td>{{ cart_item.quantity }}</td>
+        <td>
+          <form method="post" class="quantity-form">
+            {% csrf_token %}
+            <button type="button" class="minus-button" onclick="changeQuantity(this, -1)">-</button>
+            <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" class="quantity-input">
+            <button type="button" class="plus-button" onclick="changeQuantity(this, 1)">+</button>
+            <button type="submit" class="update-button">Update</button>
+          </form>
+        </td>
         <td>RM{{ cart_item.subtotal }}</td>
       </tr>
       {% endfor %}
