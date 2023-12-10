@@ -1,5 +1,4 @@
 {% extends 'main.html' %} {% load static %} {% block content %}
-<!-- <script src="{% static 'jscript/auth.js' %}"></script> -->
 <section class="login-section">
   <h2>Login</h2>
   <form id="loginForm" action="{% url 'login' %}" method="post">
@@ -9,7 +8,7 @@
     
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
-
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
     <button type="submit">Login</button>
   </form>
 </section>

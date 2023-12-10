@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.contenttypes.models import ContentType
 from django.views.decorators.http import require_POST
-
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def home(request):
@@ -155,8 +156,14 @@ def custom_register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid registration data'})
-    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+class CustomLoginView(LoginView):
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse_lazy('home'))
