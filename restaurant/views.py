@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.contenttypes.models import ContentType
+from django.views.decorators.http import require_POST
 
 
 # Create your views here.
@@ -89,25 +90,37 @@ def add_to_cart(request, pk, item_type):
     
     user_cart, created = Cart.objects.get_or_create(user=request.user)
     
-    content_type = ContentType.objects.get(model=item_type)
-    item = get_object_or_404(content_type.model_class(), pk=pk)
+    model_class = None
+    if item_type == 'food':
+        model_class = FoodItem
+    elif item_type == 'product':
+        model_class = Product
     
-    cart_item, created = CartItem.objects.get_or_create(
-        user=request.user,
-        content_type=content_type,
-        object_id=item.pk,
-        defaults={'quantity': quantity}
-    )
+    if model_class:
+        content_type = ContentType.objects.get_for_model(model_class)
+        item = get_object_or_404(model_class, pk=pk)
+        
+        cart_item, created = CartItem.objects.get_or_create(
+            user=request.user,
+            content_type=content_type,
+            object_id=item.pk,
+            defaults={'quantity': quantity}
+        )
+        
+        if not created:
+            cart_item.quantity += quantity
+            cart_item.save()
+        
+        user_cart.items.add(cart_item)
+        user_cart.save()
+    else:
+        pass
     
-    if not created:
-        cart_item.quantity += quantity
-        cart_item.save()
-    
-    user_cart.items.add(cart_item)
-    user_cart.save()
     return redirect('cart')
 
 
+@require_POST
+@login_required
 def update_cart_item(request, pk):
     cart_item = get_object_or_404(CartItem, pk=pk, user=request.user)
     new_quantity = request.POST.get('quantity', 1)
@@ -115,12 +128,13 @@ def update_cart_item(request, pk):
     cart_item.save()
     return redirect('cart')
 
-
+@require_POST
+@login_required
 def remove_from_cart(request, pk):
     cart_item = get_object_or_404(CartItem, pk=pk, user=request.user)
     cart = Cart.objects.get(user=request.user)
     cart.items.remove(cart_item)
-    cart_item.delete() 
+    cart_item.delete()
     return redirect('cart')
 
 
