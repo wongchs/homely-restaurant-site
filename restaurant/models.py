@@ -9,7 +9,7 @@ class FoodItem(models.Model):
     category = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     image = models.ImageField(upload_to='menu_items/')
     details_url = models.URLField(blank=True, null=True)
     
