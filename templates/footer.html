@@ -42,18 +42,17 @@
         <section class="footer-column">
           <h4>Restaurant</h4>
           <ul>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Drinks</a></li>
-            <li><a href="#">Dessert</a></li>
-            <li><a href="#">Catalogue</a></li>
+            <li><a href="{% url 'food' %}">Food</a></li>
+            <li><a href="{% url 'drinks' %}">Drinks</a></li>
+            <li><a href="{% url 'catalog' %}">Catalogue</a></li>
           </ul>
         </section>
         <section class="footer-column">
           <h4>Other information</h4>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Reservation</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}">Reservation</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
           </ul>
         </section>
       </section>
