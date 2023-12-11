@@ -1,5 +1,5 @@
 {% extends 'main.html' %} {% load static %} {% block content %}
-<section class="registration-section">
+<section class="login-section">
   <h2>Register</h2>
   <form action="{% url 'register' %}" method="post">
     {% csrf_token %}
