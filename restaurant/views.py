@@ -139,19 +139,6 @@ def remove_from_cart(request, pk):
     return redirect('cart')
 
 
-@login_required
-def custom_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid login credentials'})
-    return JsonResponse({'success': False, 'error': 'Invalid request method'})
-
 def custom_register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -197,6 +184,9 @@ def create_checkout_session(request):
             success_url=request.build_absolute_uri('/success/'),
             cancel_url=request.build_absolute_uri('/cancel/'),
         )
+        
+        user_cart.items.clear()
+        user_cart.save()
         return redirect(checkout_session.url, code=303)
     except Exception as e:
         pass
