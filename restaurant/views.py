@@ -10,6 +10,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.views.decorators.http import require_POST
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
+from django.conf import settings
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
 def home(request):
@@ -69,10 +73,6 @@ def cart(request):
         'total': user_cart.total,
     }
     return render(request, 'cart.html', context)
-
-
-def checkout(request):
-    return render(request, 'checkout.html')
 
 
 def item_detail(request, pk):
@@ -167,3 +167,44 @@ def custom_register(request):
 class CustomLoginView(LoginView):
     def get_success_url(self):
         return self.request.GET.get('next', reverse_lazy('home'))
+    
+    
+@login_required
+def create_checkout_session(request):
+    user_cart, created = Cart.objects.get_or_create(user=request.user)
+    items_with_subtotal = []
+    for cart_item in user_cart.items.all():
+        cart_item.subtotal = cart_item.quantity * cart_item.item.price
+        items_with_subtotal.append(cart_item)
+    
+    user_cart.total = sum(item.subtotal for item in items_with_subtotal)
+    user_cart.save()
+
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'myr',
+                    'product_data': {
+                        'name': cart_item.item.name,
+                    },
+                    'unit_amount': int(cart_item.item.price * 100),
+                },
+                'quantity': cart_item.quantity,
+            } for cart_item in items_with_subtotal],
+            mode='payment',
+            success_url=request.build_absolute_uri('/success/'),
+            cancel_url=request.build_absolute_uri('/cancel/'),
+        )
+        return redirect(checkout_session.url, code=303)
+    except Exception as e:
+        pass
+    
+
+def success(request):
+    return render(request, 'success.html')
+
+
+def cancel(request):
+    return render(request, 'cancel.html')
