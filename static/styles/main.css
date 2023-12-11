@@ -54,7 +54,7 @@ nav > a {
   padding: 0;
   font: inherit;
   cursor: pointer;
-  color: #000; 
+  color: #000;
 }
 
 hgroup {
@@ -99,7 +99,6 @@ hgroup > button > a {
   color: inherit;
 }
 
-
 /******* Mobile menu *******/
 @media (max-width: 1280px) {
   header {
@@ -111,19 +110,19 @@ hgroup > button > a {
 
   header .logo {
     margin-bottom: 0px;
-    width: auto; 
+    width: auto;
     max-width: 70%;
   }
 
   nav {
-    display: none; 
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
     text-align: left;
     position: absolute;
-    top: 70px; 
-    right: 0;;
+    top: 70px;
+    right: 0;
     background-color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 99;
@@ -139,7 +138,7 @@ hgroup > button > a {
   .menu-button {
     display: block;
     cursor: pointer;
-    font-size: 14px; 
+    font-size: 14px;
     padding: 8px;
   }
 }
@@ -851,9 +850,14 @@ a.view-catalogue:hover {
 /* logins and register
  */
 .login-section {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 50vh;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 80px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -909,4 +913,3 @@ a.view-catalogue:hover {
 .login-section a:hover {
   color: #2980b9;
 }
-
