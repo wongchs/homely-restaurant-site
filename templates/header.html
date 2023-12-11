@@ -1,5 +1,9 @@
 {% load static %}
 <header>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+    <script src="{% static 'jscript/header.js' %}"></script>
+  </head>
   <!-- logo linking to index.html/homepage -->
   <section class="logo">
     <a href="{% url 'home' %}">
@@ -24,4 +28,7 @@
     <a href="{% url 'login' %}">Login</a>
     {% endif %}
   </nav>
+  <div class="menu-button" onclick="toggleMenu()">
+    <span>&#9776;</span>
+  </div>
 </header>
