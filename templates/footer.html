@@ -1,5 +1,5 @@
 {% load static %}
-<footer>
+<!-- <footer>
   <section class="socials">
     <h2>Follow us on social media</h2>
     <a href="https://www.facebook.com/login.php">
@@ -33,4 +33,63 @@
     <a href="tel:+1234567890">+60 12-345 6789</a><br />
     <a href="mailto:info@Homely.com">info@homely.com</a>
   </address>
+</footer> -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <section class="left">
+        <section class="footer-column">
+          <h4>Restaurant</h4>
+          <ul>
+            <li><a href="#">Food</a></li>
+            <li><a href="#">Drinks</a></li>
+            <li><a href="#">Dessert</a></li>
+            <li><a href="#">Catalogue</a></li>
+          </ul>
+        </section>
+        <section class="footer-column">
+          <h4>Other information</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Reservation</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="left">
+        <section class="footer-column">
+          <h4>Follow us</h4>
+            <section class="social">
+              <a href="https://www.facebook.com/login.php">
+                <img
+                  src="{% static 'images/facebook.png' %}"
+                  alt="Facebook Icon"
+                  width="48px"
+                  height="48px"
+                />
+              </a>
+              <a href="https://twitter.com/">
+                <img
+                  src="{% static 'images/twitter.png' %}"
+                  alt="Twitter Icon"
+                  width="48px"
+                  height="48px"
+                />
+              </a>
+              <a href="https://www.instagram.com/">
+                <img
+                  src="{% static 'images/instagram.png' %}"
+                  alt="Instagram Icon"
+                  width="48px"
+                  height="48px"
+                />
+              </a>
+            </section>
+        </section>
+      </section>
+    </div>
+    <p class="copyrights">© 2023 Homely. All rights reserved.</p>
+  </div>
 </footer>

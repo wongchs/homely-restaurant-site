@@ -225,7 +225,8 @@ hgroup > button > a {
   color: black;
 }
 
-footer {
+/* Old footer */
+/* footer {
   background-color: #333;
   color: #fff;
   padding: 20px;
@@ -242,7 +243,80 @@ footer p {
 footer a {
   color: #fff;
   text-decoration: none;
+} */
+
+/* New footer */
+.row > .left,
+.row > .right {
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  list-style: none;
+}
+
+.footer {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  padding: 70px 100px 0px 100px;
+}
+
+.footer-column {
+  width: 175px;
+  padding: 0 15px;
+}
+
+.footer-column h4 {
+  font-size: 20px;
+  color: #fff;
+  text-transform: capitalize;
+  margin: 0 0 35px 0;
+  font-weight: 600;
+  position: relative;
+}
+
+.footer-column h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #266df3;
+	height: 2px;
+	box-sizing: border-box;
+	width: 70px;
+}
+
+.footer-column ul li {
+  margin: 0 0 10px 0;
+}
+
+.footer-column ul li a {
+  font-size: 18px;
+  color: #bbbbbb;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-column ul li a:hover{
+	color: #ffffff;
+	padding-left: 12px;
+}
+
+.social {
+  position: absolute;
+}
+
+.copyrights {
+  text-align: center;
+  padding: 50px 0;
+}
+/* Footer end */
 
 .food-heading,
 .drinks-heading,
