@@ -4,9 +4,13 @@
   font-family: "Roboto", sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: #fefefe;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -787,7 +791,7 @@ a.view-catalogue:hover {
  */
 .login-section {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -807,7 +811,7 @@ a.view-catalogue:hover {
 }
 
 .login-section input {
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
   margin-bottom: 16px;
   border: 1px solid #ccc;
@@ -823,6 +827,7 @@ a.view-catalogue:hover {
   cursor: pointer;
   font-size: 16px;
   width: 100%;
+  margin: 0;
 }
 
 .login-section button:hover {
