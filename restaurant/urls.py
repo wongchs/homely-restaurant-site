@@ -20,5 +20,6 @@ urlpatterns = [
     path('remove_from_cart/<int:pk>/', views.remove_from_cart, name='remove_from_cart'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('register/', views.custom_register, name='register'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
 ]
 

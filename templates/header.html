@@ -15,6 +15,13 @@
     <a href="{% url 'cart' %}" class="cart-link">
       <img src="{% static 'images/Black_cart.png' %}" alt="Cart" />
     </a>
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+    {% else %}
     <a href="{% url 'login' %}">Login</a>
+    {% endif %}
   </nav>
 </header>
