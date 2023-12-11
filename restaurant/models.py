@@ -1,5 +1,8 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 class FoodItem(models.Model):
     type = models.CharField(max_length=100)
@@ -27,7 +30,9 @@ class Product(models.Model):
     
 class CartItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    item = models.ForeignKey('FoodItem', on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    item = GenericForeignKey('content_type', 'object_id')
     quantity = models.PositiveIntegerField(default=1)
     
     def __str__(self):
@@ -35,8 +40,9 @@ class CartItem(models.Model):
     
 
 class Cart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')
     items = models.ManyToManyField(CartItem)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    
+
     def __str__(self):
-        return f'Cart with {self.items.count()} items'
+        return f'Cart with {self.items.count()} items for {self.user.username}'

@@ -50,30 +50,16 @@
   <p>All Time Customer Favorites</p>
   <!-- unlisted list of featured products -->
   <ul class="list-wrapper">
+    {% for food_item in food_items %}
     <li class="card">
       <img
-        src="./images/carbonara.jpg"
-        alt="Spaghetti Carbonara"
+        src="{{ MEDIA_URL }}{{ food_item.image.url }}"
+        alt="{{ food_item.name }}"
         width="160px"
         height="160px"
-      />Spaghetti Carbonara
+      />{{ food_item.name }}
     </li>
-    <li class="card">
-      <img
-        src="./images/chicken.jpg"
-        alt="Honey Garlic Chicken"
-        width="160px"
-        height="160px"
-      />Honey Garlic Chicken
-    </li>
-    <li class="card">
-      <img
-        src="./images/burger.jpg"
-        alt="Chicken Burger"
-        width="160px"
-        height="160px"
-      />Chicken Burger
-    </li>
+    {% endfor %}
   </ul>
 </section>
 <section class="operations">
@@ -116,54 +102,29 @@
 <section class="products">
   <h3>We also sell</h3>
   <ul class="product-container">
+    {% for product in products %}
     <li class="product">
-      <a href="sauce.html">
-        <img src="./images/bbqsauce.jpg" alt="product-image" />
+      <a href="{% url 'product_detail' product.id %}">
+        <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="product-image" />
       </a>
       <section class="product-desc">
-        <h4>Spicy BBQ Sauce</h4>
+        <h4>{{ product.name }}</h4>
         <section class="buy">
-          <h5>RM3</h5>
-          <a href="sauce.html" class="cart-link">
-            <img src="{% static 'images/shopping-cart.png' %}" alt="shopping cart icon" />
-          </a>
-        </section>
-      </section>
-    </li>
-    <li class="product">
-      <a href="sauce.html">
-        <img src="./images/chickenrub.jpg" alt="product-image"
-      /></a>
-      <section class="product-desc">
-        <h4>Special Chicken Rub</h4>
-        <section class="buy">
-          <h5>RM3</h5>
-          <a href="sauce.html" class="cart-link">
-            <img src="{% static 'images/shopping-cart.png' %}" alt="shopping cart icon" />
-          </a>
-        </section>
-      </section>
-    </li>
-    <li class="product">
-      <a href="sauce.html">
-        <img src="./images/truffle.jpg" alt="product-image" />
-      </a>
-      <section class="product-desc">
-        <h4>Gourmet Truffle Butter</h4>
-        <section class="buy">
-          <h5>RM6</h5>
-          <a href="sauce.html" class="cart-link">
+          <h5>RM{{ product.price }}</h5>
+          <a href="{% url 'product_detail' product.id %}" class="cart-link">
             <img
-              src="{% static 'images/shopping-cart.png' %}"
+              src="{% static 'images/icons/shopping-cart.png' %}"
               alt="shopping cart icon"
             />
           </a>
         </section>
       </section>
     </li>
+    {% endfor %}
   </ul>
   <div class="view-catalogue-container">
-    <a class="view-catalogue" href="catalogue.html">View Catalogue</a>
+    <a class="view-catalogue" href="{% url 'catalog' %}">View Catalogue</a>
   </div>
 </section>
+
 {% endblock %}
