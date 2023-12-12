@@ -647,7 +647,7 @@ select {
   text-decoration: none;
 }
 
-.success-message > p {
+.success-message {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -655,9 +655,16 @@ select {
   gap: 24px;
   height: 75vh;
 }
+.success-message p {
+  color: #000;
+}
 
 .success-message h1 {
   color: green;
+}
+.success-message p a {
+  color: rgba(33, 77, 196, 0.87);
+  text-decoration: underline;
 }
 
 /***********************************INDIVIDUAL FOOD***********************************/
