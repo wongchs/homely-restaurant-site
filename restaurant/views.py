@@ -200,6 +200,12 @@ def create_checkout_session(request):
             mode='payment',
             success_url=request.build_absolute_uri('/success/'),
             cancel_url=request.build_absolute_uri('/cancel/'),
+            shipping_address_collection={
+                'allowed_countries': ['MY'],
+            },
+            phone_number_collection={
+                'enabled': True,
+            },
         )
         
         user_cart.items.clear()
