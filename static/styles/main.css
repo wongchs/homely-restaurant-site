@@ -4,6 +4,12 @@
   font-family: "Roboto", sans-serif;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 html {
   height: 100%;
 }
@@ -946,6 +952,55 @@ a.view-catalogue:hover {
   background-color: rgb(98, 98, 98);
   cursor: not-allowed;
   opacity: 0.4;
+}
+
+.remove-item-button {
+  font-size: 16px;
+  color: white;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.quantity-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.minus-button,
+.plus-button,
+.update-button,
+.quantity-input {
+  padding: 0.5rem;
+  text-align: center;
+  background: white;
+  border: 1px solid #d2d2d2;
+}
+
+.minus-button,
+.plus-button,
+.update-button {
+  cursor: pointer;
+}
+
+.minus-button {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.plus-button {
+ border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.quantity-input {
+  width: 10%;
+}
+
+.update-button {
+  margin-left: 8px;
+  border-radius: 0.25rem;
 }
 
 /* logins and register
