@@ -1,4 +1,5 @@
-from .models import FoodItem, Product, CartItem, Cart
+from .models import FoodItem, Product, CartItem, Cart, Reservation
+from datetime import time
 from itertools import groupby
 from operator import attrgetter
 from django.shortcuts import render, get_object_or_404, redirect
@@ -11,6 +12,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.conf import settings
+from django.core.exceptions import ValidationError
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -54,7 +56,22 @@ def food(request):
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    business_hours = [time(hour=10), time(hour=11), time(hour=12), time(hour=13),
+                      time(hour=14), time(hour=15), time(hour=16), time(hour=17),
+                      time(hour=18), time(hour=19), time(hour=20), time(hour=21)]
+
+    selected_date = request.GET.get('date', None)
+    if selected_date:
+        existing_reservations = Reservation.objects.filter(date=selected_date)
+    else:
+        existing_reservations = Reservation.objects.none()
+
+    available_times = []
+    for t in business_hours:
+        if not existing_reservations.filter(time=t).exists():
+            available_times.append(t)
+
+    return render(request, 'contact.html', {'available_times': available_times})
 
 
 @login_required
@@ -198,3 +215,19 @@ def success(request):
 
 def cancel(request):
     return render(request, 'cancel.html')
+
+def reserve(request):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    date = request.POST.get('date')
+    time = request.POST.get('time')
+    guests = request.POST.get('guests')
+
+    reservation = Reservation(name=name, email=email, date=date, time=time, guests=guests)
+    reservation.save()
+
+    return redirect('reserved')
+    
+
+def reservation_success(request):
+    return render(request, 'reserved.html')

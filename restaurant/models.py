@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 class FoodItem(models.Model):
     type = models.CharField(max_length=100)
@@ -46,3 +48,14 @@ class Cart(models.Model):
 
     def __str__(self):
         return f'Cart with {self.items.count()} items for {self.user.username}'
+            
+
+class Reservation(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    date = models.DateField()
+    time = models.TimeField()
+    guests = models.IntegerField()
+
+    def __str__(self):
+        return f'Reservation for {self.name} on {self.date} at {self.time}'
