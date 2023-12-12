@@ -81,9 +81,9 @@
     </tr>
   </table>
   <br />
-  <form action="{% url 'create_checkout_session' %}" class="payment" method="POST">
+  <form action="{% url 'create_checkout_session' %}" method="POST">
     {% csrf_token %}
-    <button class="payment" type="submit">Proceed To Checkout</button>
+    <button class="payment" type="submit" {% if not total > 0 %}disabled{% endif %}>Proceed To Checkout</button>
   </form>
 </section>
 {% endblock %}

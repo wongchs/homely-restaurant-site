@@ -261,15 +261,15 @@ ul {
   position: relative;
 }
 
-.footer-column h4::before{
-	content: '';
-	position: absolute;
-	left:0;
-	bottom: -10px;
-	background-color: #266df3;
-	height: 2px;
-	box-sizing: border-box;
-	width: 70px;
+.footer-column h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #266df3;
+  height: 2px;
+  box-sizing: border-box;
+  width: 70px;
 }
 
 .footer-column ul li {
@@ -283,9 +283,9 @@ ul {
   transition: all 0.3s ease;
 }
 
-.footer-column ul li a:hover{
-	color: #ffffff;
-	padding-left: 12px;
+.footer-column ul li a:hover {
+  color: #ffffff;
+  padding-left: 12px;
 }
 
 .social {
@@ -332,9 +332,8 @@ ul {
 
   .left img {
     width: 40px;
-    height: 40px
+    height: 40px;
   }
-
 }
 
 /* Footer end */
@@ -936,10 +935,17 @@ a.view-catalogue:hover {
 .payment {
   font-size: 18px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   color: white;
   background-color: rgb(12, 155, 24);
-  padding: 8px 16px;
+  padding: 18px 24px;
+  cursor: pointer;
+}
+
+.payment:disabled {
+  background-color: rgb(98, 98, 98);
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 /* logins and register
