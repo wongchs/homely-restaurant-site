@@ -647,7 +647,7 @@ select {
   text-decoration: none;
 }
 
-.success-message {
+.success-message > p {
   display: flex;
   justify-content: center;
   align-items: center;
